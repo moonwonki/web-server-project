@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Question Detail</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" >
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>질문 상세보기</h1>
+    <div class="card">
+        <div class="card-header">
+            <h2 th:text="${question.title}">Question Title</h2>
+        </div>
+        <div class="card-body">
+            <p th:text="${question.content}">Question Content</p>
+            <a href="/questionList" class="btn btn-secondary">Back to Questions</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

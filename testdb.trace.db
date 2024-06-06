@@ -1,0 +1,9 @@
+2024-06-05 03:29:16.329709+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "QUESTION" not found (this database is empty); SQL statement:
+select q1_0.id,q1_0.content,q1_0.title from question q1_0 where q1_0.id=? [42104-224]
+2024-06-05 03:29:21.529608+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "QUESTION" not found (this database is empty); SQL statement:
+select q1_0.id,q1_0.content,q1_0.title from question q1_0 [42104-224]
+2024-06-05 03:42:12.100814+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "QUESTION" not found (this database is empty); SQL statement:
+select q1_0.id,q1_0.content,q1_0.title from question q1_0 [42104-224]
