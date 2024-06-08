@@ -17,27 +17,27 @@ public class QuestionController {
         this.questionService = questionService;
     }
 
-    @GetMapping("/questionList")
+    @GetMapping("/")
     public String questionList(Model model){
         model.addAttribute("questionList", questionService.getQuestionList());
-        return "/questionList";
+        return "questionList";
     }
 
-    @GetMapping("/question/detail/{questionId}")
+    @GetMapping("/detail/{questionId}")
     public String questionDetail(@PathVariable("questionId") Long questionId, Model model){
         model.addAttribute("question", questionService.getQuestionDetail(questionId));
-        return "/questionDetail";
+        return "questionDetail";
     }
 
 
-    @GetMapping("/question/upload")
+    @GetMapping("/question/create")
     public String questionForm(Model model){
         return "questionForm";
     }
-    @PostMapping("/question/upload")
-    public String questionUpload(QuestionDto dto){
+    @PostMapping("/question/create")
+    public String createQuestion(QuestionDto dto){
         Long questionId = questionService.createQuestion(dto);
-        return "redirect:/question/detail/" + questionId;
+        return "redirect:/detail/" + questionId;
     }
 
 

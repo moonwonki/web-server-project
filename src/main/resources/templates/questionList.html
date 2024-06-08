@@ -1,40 +1,37 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Questions</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" >
-    <script src="/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <title>질문 목록</title>
 </head>
 <body>
-<div class="container mt-5">
-    <h1 class="d-inline">질문 목록</h1>
-    <a href="/question/upload" class="btn btn-primary mb-3 float-right">질문 추가</a>
-
-    <div th:if="${#lists.isEmpty(questionList)}">
-        <p>No questions available.</p>
-    </div>
-
-    <div th:if="${!questionList.isEmpty()}">
-        <table class="table table-striped">
+    <div class="container my-3">
+        <table class="table">
             <thead>
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Actions</th>
+            <tr class="table-dark">
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성일시</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="question : ${questionList}">
-                <td th:text="${question.id}">1</td>
-                <td th:text="${question.title}">Question Title</td>
+            <tr th:if="${questionList.isEmpty()}">
+                <td colspan="3">질문이 없습니다.</td>
+            </tr>
+            <tr th:each="question, iterStat : ${questionList}">
+                <td th:text="${iterStat.count}"></td>
                 <td>
-                    <a th:href="@{/question/detail/{id}(id=${question.id})}" class="btn btn-info btn-sm">View</a>
+                    <a th:href="@{/detail/{id}(id=${question.id})}" th:text="${question.subject}"></a>
+                    <span th:if="${#lists.size(question.answerSet) > 0}" class="text-danger small mx-2" th:text="${#lists.size(question.answerSet)}"></span>
                 </td>
+                <td th:text="${question.createDate}"></td>
             </tr>
             </tbody>
         </table>
+        <a th:href="@{/question/create}" class="btn btn-primary">질문 등록하기</a>
     </div>
-</div>
+<script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 </html>
