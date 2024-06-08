@@ -5,7 +5,10 @@ import com.mysite.mysite.entity.Question;
 import com.mysite.mysite.repository.QuestionRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -18,8 +21,12 @@ public class QuestionService {
 
     public Long createQuestion(QuestionDto dto){
         Question question = new Question();
-        question.setTitle(dto.getTitle());
+        question.setSubject(dto.getSubject());
         question.setContent(dto.getContent());
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 hh:mm a", Locale.KOREAN);
+        String formattedDate = now.format(formatter);
+        question.setCreateDate(formattedDate);
         return questionRepository.save(question).getId();
     }
 
